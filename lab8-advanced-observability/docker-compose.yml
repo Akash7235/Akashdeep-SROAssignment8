@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   jaeger:
     image: jaegertracing/all-in-one:latest
@@ -39,5 +40,10 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - grafana-storage:/var/lib/grafana
+  custom-app:
+    build: .
+    container_name: custom-metrics-app
+    ports:
+      - "8000:8000"
 volumes:
   grafana-storage:
